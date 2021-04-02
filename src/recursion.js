@@ -8,7 +8,7 @@
 // factorial(5); // 120
 var factorial = function(n) {
 
-// define result
+// define result = 1 as multiplicative identity is 1
 var result = 1;
 
 //manage edge case
@@ -31,6 +31,23 @@ return result;
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+
+// define result = 0 as additive identity is 0;
+var result = 0;
+
+// if array length is 0
+if (array.length === 0) {
+  // return result
+  return result;
+// else
+} else {
+  // add first element of array to sum + invoke recursive function on array.slice(1)
+  result += array[0] + sum(array.slice(1));
+}
+
+// return result
+return result;
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
