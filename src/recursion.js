@@ -156,12 +156,10 @@ if (x<=y) {
       // push min + 1 to result array
       result.push(min + 1);
       result = result.concat(range(min + 1, max));
-      console.log('result: ', result);
 
     // else
     } else {
       // return result
-      console.log('result blank: ', result)
       return result;
     }
 
@@ -174,11 +172,9 @@ if (x<=y) {
         // push min + 1 to result array
         result.push(max - 1);
         result = result.concat(range(max - 1, min));
-        console.log('result: ', result);
       // else
       } else {
         // return result
-        console.log('result blank: ', result)
         return result;
       }
 
@@ -201,23 +197,24 @@ var isExpNegative = exp < 0;
 // define result with multiplicative identity of 1
 var result = 1;
 
-// if exponent is 0
-if (exp === 0) {
-  // return result
-  return result;
-// else
-} else {
-
-  if (isExpNegative) {
-  result *= (1/base) * exponent(base, exp + 1);
-  result = Number(result.toFixed(5));
-  return result;
-
+  // if exponent is 0
+  if (exp === 0) {
+    // return result
+    return result;
+  // else
   } else {
-  result *= base * exponent(base, exp - 1);
-  return result;
-  }
-};
+
+    if (isExpNegative) {
+    result *= (1/base) * exponent(base, exp + 1);
+    result = Number(result.toFixed(5));
+    return result;
+
+    } else {
+    result *= base * exponent(base, exp - 1);
+    return result;
+    }
+
+  };
 
 };
 
@@ -226,14 +223,51 @@ if (exp === 0) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+// if n === variable
+if (n === 1) {
+  // return true
+  return true;
+// if n < 1
+} else if (n < 1) {
+  // return false
+  return false;
+// else
+} else {
+  // invoke recursive function (exponent + 1)
+  return powerOfTwo(n / 2);
+}
+
+
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+
+// define reversedString
+var reversedString = "";
+
+// if string is empty
+if (string.length === 1) {
+  // return reversedString
+  return string;
+}
+
+// add last character of string to reversedString + invoke recursive function by removing only last character
+reversedString += string[string.length - 1] + reverse(string.slice(0,-1));
+
+// return reversedString
+return reversedString;
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+
+
+
+
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
