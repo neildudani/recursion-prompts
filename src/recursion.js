@@ -368,13 +368,13 @@ var countValuesInObj = function(obj, value) {
 // create count variable
 var count = 0;
 
-// iterate over each key
+// iterate over each key in object
 for (var key in obj) {
-  // if key is object
+  // if value is object
   if (typeof obj[key] === 'object') {
     // return invoke recursive function
     count += countValuesInObj(obj[key], value);
-  // else (if key is not object)
+  // else (if value is not an object)
   } else {
     // add 1 to count if value === target
     if (obj[key] === value) {
@@ -390,7 +390,38 @@ return count;
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
+
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+
+// iterate over each key in object
+for (var currentKey in obj) {
+
+    // if value is object
+    if (typeof obj[currentKey] === 'object') {
+      // replace value of current key by invoking recursive function
+      obj[currentKey] = replaceKeysInObj(obj[currentKey], oldKey, newKey);
+
+      // it is not necessary to include obj[currentKey] in the line above as objects/arrays are stored by reference.
+      // the return value of the inner execution context in this case is irrelevant as we are not doing anything with it
+    }
+
+    if (currentKey === oldKey) {
+      // store value of key in variable
+      var value = obj[currentKey];
+      // add property with same value and new key
+      obj[newKey] = value;
+      // delete currentKey
+      delete obj[currentKey];
+    }
+
+    // the reason we cannot use an else/if statement in line 405 is being mindful of an example such as:
+    // replaceKeysInObj({ 'a' : { 'a': true} }, 'a', 'b'}); here both the conditions are true.
+
+  }
+
+// return obj
+return obj;
+
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
