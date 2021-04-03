@@ -247,9 +247,9 @@ var reverse = function(string) {
 // define reversedString
 var reversedString = "";
 
-// if string is empty
+// if string is length 1
 if (string.length === 1) {
-  // return reversedString
+  // return string
   return string;
 }
 
@@ -264,11 +264,26 @@ return reversedString;
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
 
+var lowerCase = string.toLowerCase();
 
+// if string is 0 or 1 characters, return true;
+if (lowerCase.length === 0 || lowerCase.length === 1) {
+  return true;
+}
 
+// if first and last character are not the same, return false;
+if (lowerCase[0] !== lowerCase[lowerCase.length - 1]) {
+  return false;
+}
+
+// cut letters on end of string each time to narrow down to 1 or 0 letter string
+var cutEnds = lowerCase.slice(1,lowerCase.length - 1);
+return palindrome(cutEnds);
 
 
 };
+
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
