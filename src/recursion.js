@@ -51,12 +51,57 @@ return result;
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
-// arraySum([1,[2,3],[[4]],5]); // 15
+// arraySum([1,[2,3],[[4]],]); // 15
 var arraySum = function(array) {
+
+// define result = 0 as additive identity is 0;
+var result = 0;
+
+// if array length is 0
+if (array.length === 0) {
+  // return result
+  return result;
+};
+
+// for each item in the array
+array.forEach(function(item) {
+  // if is not an array
+  if (!Array.isArray(item)) {
+    result += item;
+  }
+  // else
+  else {
+    // invoke array function on item
+    result += arraySum(item);
+  }
+});
+
+
+// return result
+return result;
+
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+
+// convert number to absolute value
+var absoluteValue = Math.abs(n);
+
+// if n - 2 === 0
+if (absoluteValue === 0) {
+  // return true
+  return true;
+// if n - 2 === 1
+} else if (absoluteValue === 1) {
+  // return false
+  return false;
+// else
+} else {
+  return isEven(absoluteValue-2);
+}
+
+
 };
 
 // 5. Sum all integers below a given integer.
