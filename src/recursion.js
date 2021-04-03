@@ -144,10 +144,48 @@ if (isNegative) {
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
 
+// create result array
+var result = [];
 
+if (x<=y) {
+  var min = x;
+  var max = y;
 
+    // if min + 1 less than max
+    if (min + 1 < max) {
+      // push min + 1 to result array
+      result.push(min + 1);
+      result = result.concat(range(min + 1, max));
+      console.log('result: ', result);
 
+    // else
+    } else {
+      // return result
+      console.log('result blank: ', result)
+      return result;
+    }
 
+} else {
+  var min = y;
+  var max = x;
+
+      // if min + 1 less than max
+      if (max - 1 > min) {
+        // push min + 1 to result array
+        result.push(max - 1);
+        result = result.concat(range(max - 1, min));
+        console.log('result: ', result);
+      // else
+      } else {
+        // return result
+        console.log('result blank: ', result)
+        return result;
+      }
+
+}
+
+// return result array
+return result;
 
 };
 
