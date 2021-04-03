@@ -108,11 +108,47 @@ if (absoluteValue === 0) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+
+// declare result variable
+var result = 0;
+
+// determine if result is negative
+var isNegative = n < 0;
+
+// convert number to absolute value
+var absoluteValue = Math.abs(n);
+
+// if number is 0
+if (absoluteValue === 0) {
+  // return result (adjusting for negative if necessary)
+  if (isNegative) {
+    return -result;
+  } else {
+    return result;
+  }
+}
+
+// add n to result + invoke at value -1
+result += absoluteValue - 1 + sumBelow(absoluteValue - 1);
+
+// return result variable (adjusting for negative if necessary)
+if (isNegative) {
+  return -result;
+} else {
+  return result;
+}
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+
+
+
+
+
+
 };
 
 // 7. Compute the exponent of a number.
